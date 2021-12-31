@@ -80,13 +80,14 @@ const Menu = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
+  margin-left: 150px;
   a {
     font-weight: 600;
     text-transform: uppercase;
     padding: 0 10px;
     flex-wrap: nowrap;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `;
