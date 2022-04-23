@@ -1,6 +1,6 @@
 # tesla-simple-front-clone
 
-just simple website
+simple website
 
 ## Installation
 
