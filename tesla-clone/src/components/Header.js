@@ -6,56 +6,73 @@ import { selectCars } from "../features/car/carSlice";
 import { useSelector } from "react-redux";
 
 function Header() {
+  // State to manage burger menu visibility
   const [burgerStatus, setBurgerStatus] = useState(false);
+
+  // Fetching car data from Redux store
   const cars = useSelector(selectCars);
+
   return (
     <Container>
-      <a>
+      {/* Logo */}
+      <a href="/">
         <img src="/images/logo.svg" alt="logoimage" />
       </a>
+
+      {/* Main menu */}
       <Menu>
         {cars &&
           cars.map((car, index) => (
-            <a key={index} href="#">
+            <a key={index} href="/" onClick={() => setBurgerStatus(false)}>
               {car}
             </a>
           ))}
       </Menu>
+
+      {/* Right menu including Shop and Tesla Account */}
       <RightMenu>
-        <a href="#">Shop</a>
-        <a href="#">Tesla Account</a>
+        <a href="/">Shop</a>
+        <a href="/">Tesla Account</a>
+        {/* Burger menu icon */}
         <CustomMenu onClick={() => setBurgerStatus(true)} />
       </RightMenu>
+
+      {/* Burger menu */}
       <BurgerNav show={burgerStatus}>
+        {/* Close button */}
         <CloseWrapper>
           <CustomClose onClick={() => setBurgerStatus(false)} />
         </CloseWrapper>
+
+        {/* Dynamic car menu items */}
         {cars &&
           cars.map((car, index) => (
-            <li>
-              <a key={index} href="#">
-                {car}
-              </a>
-            </li>
+            <MenuItem key={index}>
+              <a href="/">{car}</a>
+            </MenuItem>
           ))}
-        <li>
-          <a href="#">Existing Inventory</a>
-        </li>
-        <li>
-          <a href="#">Used Inventory</a>
-        </li>
-        <li>
-          <a href="#">Trade-in</a>
-        </li>
-        <li>
-          <a href="#">Roadster</a>
-        </li>
+
+        {/* Static menu items */}
+        <MenuItem>
+          <a href="/">Existing Inventory</a>
+        </MenuItem>
+        <MenuItem>
+          <a href="/">Used Inventory</a>
+        </MenuItem>
+        <MenuItem>
+          <a href="/">Trade-in</a>
+        </MenuItem>
+        <MenuItem>
+          <a href="/">Roadster</a>
+        </MenuItem>
       </BurgerNav>
     </Container>
   );
 }
 
 export default Header;
+
+// Styled components
 
 const Container = styled.div`
   background: white;
@@ -64,7 +81,6 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  align-items: center;
   padding: 0 20px;
   top: 0;
   left: 0;
@@ -118,13 +134,6 @@ const BurgerNav = styled.div`
   text-align: start;
   transform: ${(props) => (props.show ? "translateX(0)" : "translateX(100%)")};
   transition: transform 0.2s ease-in;
-  li {
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    a {
-      font-weight: 600;
-    }
-  }
 `;
 
 const CustomClose = styled(CloseIcon)`
@@ -134,4 +143,12 @@ const CustomClose = styled(CloseIcon)`
 const CloseWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
+`;
+
+const MenuItem = styled.li`
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  a {
+    font-weight: 600;
+  }
 `;

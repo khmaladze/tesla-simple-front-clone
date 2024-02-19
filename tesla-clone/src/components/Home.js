@@ -5,6 +5,7 @@ import Section from "./Section";
 function Home() {
   return (
     <Container>
+      {/* Each Section component represents a different product or service */}
       <Section
         title="Model S"
         description="Order Online for Touchless Delivery"
@@ -49,7 +50,6 @@ function Home() {
       />
       <Section
         title="Accessories"
-        description=""
         backgroundImg="accessories.jpg"
         leftBtnText="Shop now"
       />
@@ -59,6 +59,7 @@ function Home() {
 
 export default Home;
 
+// Styled container with 100vh height for full screen display
 const Container = styled.div`
   height: 100vh;
 `;
